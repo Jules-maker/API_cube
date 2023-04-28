@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('type_of_street', 20);
+            $table->string('type_of_street', 40);
             $table->integer('number');
             $table->string('street_name', 100);
-            $table->integer('zipcode');
+            $table->string('zipcode');
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
