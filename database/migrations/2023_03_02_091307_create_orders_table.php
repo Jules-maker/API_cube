@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
             $table->unsignedBigInteger('address_id')->nullable();
-            $table->foreign('address_id')->references('id')->on('address');
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
         });
     }
