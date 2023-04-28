@@ -23,24 +23,24 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/produits', function () {
-    return view('produits');
-})->middleware(['auth', 'verified'])->name('produits');
+    return view('products');
+})->middleware(['auth', 'verified'])->name('products');
 
 Route::get('/categories', function () {
     return view('categories');
 })->middleware(['auth', 'verified'])->name('categories');
 
 Route::get('/statut-commande', function () {
-    return view('statut-commande');
-})->middleware(['auth', 'verified'])->name('statut-commande');
+    return view('order_status');
+})->middleware(['auth', 'verified'])->name('order_status');
 
 Route::get('/mots-cles-et-reponses', function () {
-    return view('mots-cles-et-reponses');
-})->middleware(['auth', 'verified'])->name('mots-cles-et-reponses');
+    return view('keywords_and_answers');
+})->middleware(['auth', 'verified'])->name('keywords_and_answers');
 
 Route::get('/donnees-utilisateurs', function () {
-    return view('donnees-utilisateurs');
-})->middleware(['auth', 'verified'])->name('donnees-utilisateurs');
+    return view('user_data');
+})->middleware(['auth', 'verified'])->name('user_data');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

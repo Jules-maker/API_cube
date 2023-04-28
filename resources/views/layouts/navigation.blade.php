@@ -15,19 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('mots-cles-et-reponses')" :active="request()->routeIs('mots-cles-et-reponses')">
+                    <x-nav-link :href="route('keywords_and_answers')" :active="request()->routeIs('keywords_and_answers')">
                         {{ __('Mots clés et réponses') }}
                     </x-nav-link>
                     <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
                         {{ __('Categories') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('produits')" :active="request()->routeIs('produits')">
+                    <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('Produits') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('donnees-utilisateurs')" :active="request()->routeIs('donnees-utilisateurs')">
+                    <x-nav-link :href="route('user_data')" :active="request()->routeIs('user_data')">
                         {{ __('Données utilisateurs') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('statut-commande')" :active="request()->routeIs('statut-commande')">
+                    <x-nav-link :href="route('order_status')" :active="request()->routeIs('order_status')">
                         {{ __('Statut commande') }}
                     </x-nav-link>
                 </div>
