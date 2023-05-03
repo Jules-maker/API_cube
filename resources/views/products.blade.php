@@ -9,111 +9,39 @@
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Image du produit
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Nom du produit
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Prix du produit
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Catégories du produit
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Nombre de stock
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   ID du produit
                 </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                  Modifier/Supprimer
+                </th> 
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="image-produit.jpg" alt="">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    Nom du produit
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    <input type="text" class="w-24 border rounded px-2 py-1" value="49.99">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex flex-col">
-                    <div class="flex items-center mb-2">
-                      <span class="mr-2">Catégorie 1</span>
-                      <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-1 px-2 rounded-full">
-                        Modifier
-                      </button>
-                    </div>
-                    <div class="flex items-center">
-                      <span class="mr-2">Catégorie 2</span>
-                      <button class="bg-slate-400 text-black font-bold py-1 px-2 rounded-full">
-                        Modifier
-                      </button>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    <input type="text" class="w-24 border rounded px-2 py-1" value="10">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ID-123456
-                </td>
-              </tr>
-              <!-- Ajoutez d'autres lignes de tableau pour plus de produits -->
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="image-produit.jpg" alt="">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    Nom du produit
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    <input type="text" class="w-24 border rounded px-2 py-1" value="49.99">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex flex-col">
-                    <div class="flex items-center mb-2">
-                      <span class="mr-2">Catégorie 1</span>
-                      <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-1 px-2 rounded-full">
-                        Modifier
-                      </button>
-                    </div>
-                    <div class="flex items-center">
-                      <span class="mr-2">Catégorie 2</span>
-                      <button class="bg-slate-400 text-black font-bold py-1 px-2 rounded-full">
-                        Modifier
-                      </button>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm font-medium text-gray-900">
-                    <input type="text" class="w-24 border rounded px-2 py-1" value="10">
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ID-123456
-                </td>
-              </tr>
+                @foreach ($products as $product)
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex-shrink-0 h-10 w-10">{{ $product->name }}</div>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
+
           </table>
         </div>
       </div>

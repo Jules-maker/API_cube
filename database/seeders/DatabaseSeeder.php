@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Order::factory(10)->create();
         \App\Models\OrderItem::factory(10)->create();
         \App\Models\Product::factory(10)->create();
+        // \App\Models\Role::factory(10)->create(); 
+        //for responses
+        \App\Models\Response::factory(10)->create();
         
 
         // \App\Models\Status::factory(10)->create(); ?
