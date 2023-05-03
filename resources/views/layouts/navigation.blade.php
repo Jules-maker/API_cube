@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('keywords_and_answers')" :active="request()->routeIs('keywords_and_answers')">
                         {{ __('Mots clés et réponses') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                         {{ __('Categories') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
