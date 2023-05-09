@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KeywordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/produits', [ProductController::class, 'index'])->name('products.index');
+Route::get('/produits', [ProductController::class, 'index'])->name('produits');
 Route::delete('/produits/{product}', [ProductController::class,'destroy'])->name('products.destroy');
 
 
@@ -40,9 +41,12 @@ Route::get('/statut-commande', function () {
     return view('order_status');
 })->middleware(['auth', 'verified'])->name('order_status');
 
-Route::get('/mots-cles-et-reponses', function () {
-    return view('keywords_and_answers');
-})->middleware(['auth', 'verified'])->name('keywords_and_answers');
+Route::get('/mots-cles-et-reponses', [KeywordController::class, 'index'])->name('keywords.index');
+Route::post('/mots-cles-et-reponses', [KeywordController::class, 'store'])->name('keywords.store');
+Route::get('/mots-cles-et-reponses/{keyword}/edit', [KeywordController::class, 'edit'])->name('keywords.edit');
+Route::put('/mots-cles-et-reponses/{keyword}', [KeywordController::class, 'update'])->name('keywords.update');
+Route::delete('/mots-cles-et-reponses/{keyword}', [KeywordController::class, 'destroy'])->name('keywords.destroy');
+
 
 Route::get('/donnees-utilisateurs', function () {
     return view('user_data');

@@ -14,10 +14,14 @@ class ProductController extends Controller
 {
     $products = Product::all();
 
-    // return view('products.index', ['products' => $products]);
+    return view('products', ['products' => $products]);
 }
 
 
+    // return view('dashboard', compact('products'));
+
+
+    
 
     /**
      * Show the form for creating a new resource.
