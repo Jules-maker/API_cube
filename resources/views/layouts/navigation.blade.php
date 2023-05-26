@@ -1,71 +1,78 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gradient-to-b from-indigo-600 to-blue-800 border-b border-gray-100 dark:border-gray-700 w-1/6 h-screen fixed top-0 left-0 flex flex-col fi">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div class="flex justify-between h-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
+    <div class="flex justify-between w-full">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div>
+              
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('keywords.index')" :active="request()->routeIs('keywords.index')">
-                        {{ __('Mots clés et réponses') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
-                        {{ __('Categories') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('produits')" :active="request()->routeIs('produits')">
-                        {{ __('Produits') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('user_data')" :active="request()->routeIs('user_data')">
-                        {{ __('Données utilisateurs') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('order_status')" :active="request()->routeIs('order_status')">
-                        {{ __('Statut commande') }}
-                    </x-nav-link>
-                </div>
-            </div>
+                <div class="flex-1">
+    <ul class="space-y-4">
+      <li>
+        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-home mr-2"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('keywords.index') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-key mr-2"></i>
+          Mots clés et réponses
+        </a>
+      </li>
+      <li>
+      <a href="{{ route('categories.index') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+      <i class="fas fa-list-alt mr-2"></i>
+          Categories
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('produits') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-shopping-cart mr-2"></i>
+          Produits
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('user_data') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-users mr-2"></i>
+          Données utilisateurs
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('order_status') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-truck mr-2"></i>
+          Commandes
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('profile.edit') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+        <i class="fas fa-cog mr-2"></i>
+          Paramètres
+        </a>
+      </li>
+      <div class="flex-shrink-0">
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+
+      <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                  this.closest('form').submit();"
+                  class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
+              
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Déconnexion
+      </a>
+    </form>
+  </div>
+
+
+  <!-- Logout Button -->
+  
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
+           
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">

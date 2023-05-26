@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -15,6 +16,14 @@ class ProductController extends Controller
     $products = Product::all();
 
     return view('products', ['products' => $products]);
+    
+}
+
+public function dashboard()
+{
+    $products = Product::select('label', 'stock_available')->get();
+
+    return view('dashboard', ['products' => $products]);
 }
 
 
@@ -23,53 +32,34 @@ class ProductController extends Controller
 
     
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('products.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+        // Validation des données de la requête
+        $validatedData = $request->validate([
+            'label' => 'required',
+            'price' => 'required|numeric',
+            'stock_available' => 'required|integer',
+            'picture' => 'required|image|max:2048',
+        ]);
     
-     public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('products');
-    }
-}
+        // // Enregistrement de l'image
+        // $path = $request->file('picture')->store('public/images');
+        // $imagePath = Storage::url($path);
+            
+        // // Création d'un nouveau produit avec les données de la requête et le chemin de l'image
+        // $product = new Product([
+        //     'label' => $validatedData['label'],
+        //     'price' => $validatedData['price'],
+        //     'stock_available' => $validatedData['stock_available'],
+        //     'picture_path' => $path,
+        // ]);
+        // $product->save();
+    
+        // Redirection vers la page de liste des produits
+        return redirect()->route('products.index');
+    }}

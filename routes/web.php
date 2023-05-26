@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\KeywordController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,12 +23,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $products = App\Models\Product::all();
+    return view('dashboard', ['products' => $products]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('/produits', [ProductController::class, 'index'])->name('produits');
 Route::delete('/produits/{product}', [ProductController::class,'destroy'])->name('products.destroy');
-
+Route::post('/produits', [ProductController::class, 'store'])->name('products.store');
+Route::get('/produits/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/produits/{product}', [ProductController::class, 'update'])->name('products.update');
 
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
