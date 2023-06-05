@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('label', 150);
-            $table->integer('price_unit');
+            $table->decimal('price_unit', 8, 2);
             $table->longText('picture_path');
             $table->string('color', 20);
             $table->string('brand', 20);

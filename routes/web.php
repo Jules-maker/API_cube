@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,16 +25,27 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/produits', [ProductController::class, 'index'])->name('products.index');
+
 Route::delete('/produits/{product}', [ProductController::class,'destroy'])->name('products.destroy');
 
 
-
+// categories
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    //Products
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    //Users
+    Route::get('/donnees-utilisateurs', [UserController::class, 'index'])->name('users.index');
+    Route::get('/donnees-utilisateurs/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/donnees-utilisateurs/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/donnees-utilisateurs/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 Route::get('/statut-commande', function () {
@@ -43,10 +55,6 @@ Route::get('/statut-commande', function () {
 Route::get('/mots-cles-et-reponses', function () {
     return view('keywords_and_answers');
 })->middleware(['auth', 'verified'])->name('keywords_and_answers');
-
-Route::get('/donnees-utilisateurs', function () {
-    return view('user_data');
-})->middleware(['auth', 'verified'])->name('user_data');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

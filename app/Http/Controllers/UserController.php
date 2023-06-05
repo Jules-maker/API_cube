@@ -12,31 +12,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
+        $users = User::all();
+    
+        return view('users/index', ['users' => $users]);
     }
 
     /**
@@ -44,7 +22,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -52,7 +30,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:users,name,' . $user->id,
+        ]);
+
+        $user->update($validatedData);
+
+        return redirect()->route('users.index')->with('success', 'L\'utilisateur a été modifié avec succès.');
     }
 
     /**
@@ -60,6 +44,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'L\'utilisateur a été supprimé avec succès.');
     }
 }

@@ -30,9 +30,9 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-2.5 mr-2 rounded">
-  <i class="fas fa-plus-circle mr-2"></i>Ajouter
-</button>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-black font-bold px-5 py-2.5 mr-2 rounded">
+                      <i class="fas fa-plus-circle mr-2"></i>Ajouter
+                  </button>
                   </td>
                 </form>
               </tr>
@@ -42,7 +42,7 @@
                 <td class="px-6 py-4 whitespace-nowrap ">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-lg font-semibold text-gray-900 @if($category->name == 'Violet') text-purple-500 @endif @if($category->name == 'Rouge') text-red-500 @endif">
+                      <div class="text-lg font-semibold text-red-500">
                         {{ $category->name }}
                       </div>
                     </div>

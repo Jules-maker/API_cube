@@ -21,10 +21,10 @@
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                         {{ __('Categories') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Produits') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user_data')" :active="request()->routeIs('user_data')">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Données utilisateurs') }}
                     </x-nav-link>
                     <x-nav-link :href="route('order_status')" :active="request()->routeIs('order_status')">
