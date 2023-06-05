@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KeywordController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,14 +24,18 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $products = App\Models\Product::all();
+    return view('dashboard', ['products' => $products]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::delete('/produits/{product}', [ProductController::class,'destroy'])->name('products.destroy');
+
+// Route::get('/produits', [ProductController::class, 'index'])->name('produits');
+// Route::delete('/produits/{product}', [ProductController::class,'destroy'])->name('products.destroy');
 
 
-// categories
+
+
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
@@ -52,9 +58,12 @@ Route::get('/statut-commande', function () {
     return view('order_status');
 })->middleware(['auth', 'verified'])->name('order_status');
 
-Route::get('/mots-cles-et-reponses', function () {
-    return view('keywords_and_answers');
-})->middleware(['auth', 'verified'])->name('keywords_and_answers');
+Route::get('/mots-cles-et-reponses', [KeywordController::class, 'index'])->name('keywords.index');
+Route::post('/mots-cles-et-reponses', [KeywordController::class, 'store'])->name('keywords.store');
+Route::get('/mots-cles-et-reponses/{keyword}/edit', [KeywordController::class, 'edit'])->name('keywords.edit');
+Route::put('/mots-cles-et-reponses/{keyword}', [KeywordController::class, 'update'])->name('keywords.update');
+Route::delete('/mots-cles-et-reponses/{keyword}', [KeywordController::class, 'destroy'])->name('keywords.destroy');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

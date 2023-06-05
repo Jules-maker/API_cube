@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -24,18 +25,16 @@ class ProductController extends Controller
 }
 
 
+    // return view('dashboard', compact('products'));
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    
+
     public function create()
     {
-        //
+        return view('products.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
@@ -86,6 +85,21 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+        // Validation des données de la requête
+       
+    
+        // // Enregistrement de l'image
+        // $path = $request->file('picture')->store('public/images');
+        // $imagePath = Storage::url($path);
+            
+        // // Création d'un nouveau produit avec les données de la requête et le chemin de l'image
+        // $product = new Product([
+        //     'label' => $validatedData['label'],
+        //     'price' => $validatedData['price'],
+        //     'stock_available' => $validatedData['stock_available'],
+        //     'picture_path' => $path,
+        // ]);
+        // $product->save();
     
      public function destroy(Product $product)
     {
