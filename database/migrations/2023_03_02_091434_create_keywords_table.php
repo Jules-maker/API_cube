@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('keywords', function (Blueprint $table) {
             $table->id();
-            $keywords = $table->string('keywords',150);
+            $table->string('keywords',150);
             $table->unsignedBigInteger('responses_id')->nullable();
             $table->foreign('responses_id')->references('id')->on('responses');
             $table->timestamps();

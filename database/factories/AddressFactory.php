@@ -23,6 +23,7 @@ class AddressFactory extends Factory
             'number' => fake()->randomNumber(2, false),
             'street_name' => fake()->streetName(),  
             'zipcode' => fake()->randomNumber(5, true),
+            // users_id is attached in UserFactory.php
             
         ];
     }
