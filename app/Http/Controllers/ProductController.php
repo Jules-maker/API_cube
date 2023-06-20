@@ -83,7 +83,6 @@ class ProductController extends Controller
             'price_unit' => 'required|decimal:0,2',
             'category_ids' => 'required',
             'stock_available' => 'required|integer',
-            'gender' => 'required',
         ]);
 
 

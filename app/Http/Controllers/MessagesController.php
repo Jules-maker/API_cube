@@ -5,37 +5,55 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Response;
+use App\Models\Keyword;
+
 
 class MessagesController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
     public function handleMessage(Request $request)
-{
-    // Récupération du message de l'utilisateur
-    $message = $request->input('message');
+    {
+    $userMessage = $request->input('message');
+    
+    if ($userMessage) {
 
-    // Vérification que le message a bien été envoyé
-    if ($message) {
-
-        // Liste des mots clés pour "Bonjour"
-        $mots_cles_bonjour = array('Bonjour', 'bonjour', 'Coucou', 'coucou', 'Salut', 'salut', 'Hey', 'hey', 'Hello', 'hello', 'Hi', 'hi');
-
-        // Vérification de la présence d'un mot clé dans le message
-        if (str_replace($mots_cles_bonjour, '', $message) !== $message) {
-            $response = "Bonjour ! Comment puis-je vous aider ?";
-        } else if (strpos($message, 'au revoir') !== false) {
-            $response = "Au revoir ! A bientôt.";
-        } else {
-            $response = "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?";
+        $categories = Category::all();
+        if (strpos($userMessage, 'catalogue') !==false) {
+            $response = "Voici les catégories disponibles : ";
+            foreach ($categories as $category) {
+                $response .= $category->name . '; ';
+                
+            }} else {
+            $response = false;
+        } if ($response) {
+            return response()->json($response);
         }
-
-        return response()->json($response);
     }
 
-    // Si le message n'a pas été envoyé, renvoyer un message d'erreur
-    $response = "Désolé, nous n'avons pas reçu votre message.";
-    return response()->json($response);
-}
+    $keywords = explode(' ', $userMessage);
+    $response = $this->findResponseId($keywords);
+	return response()->json($response->text_response);
+
+    }
+
+    private function findResponseId(array $keywords)
+    {
+        // Parcourez les mots-clés et recherchez l'ID de réponse correspondant
+        foreach ($keywords as $keyword) {
+            // Recherchez dans la base de données ou toute autre source de données pour trouver l'ID de réponse correspondant au mot-clé
+            $responseId = Keyword::where(function($query) use ($keyword) {
+                $query->orWhere('keywords', 'like', "%$keyword%");
+            })->first()->responses_id;
+
+            if ($responseId) {
+                // Si un ID de réponse correspondant est trouvé, retournez-le
+                return Response::find($responseId);
+            }
+        }
+        return null;
+    }
 }

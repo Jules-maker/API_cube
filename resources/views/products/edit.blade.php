@@ -40,10 +40,6 @@
                      <input id="stock" class="border-2 border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent block w-full" type="text" name="stock_available" value="{{ old('stock', $product->stock_available) }}" required autofocus />
                      <label for="id" class="block font-medium text-sm mb-1 text-gray-700">ID du produit</label>
                      <input id="id" class="border-2 border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent block w-full" type="text" name="id" value="{{ old('id', $product->id) }}"  autofocus disabled />
-                     <label for="gender" class="block font-medium text-sm mb-1 text-gray-700">Civilité du produit
-                     </label>
-                     <input id="gender" class="border-2 border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent block w-full" type="text" name="gender" value="{{ old('gender', $product->gender) }}" required autofocus />
-                  </div>
                   <div class="flex items-center justify-end mt-4">
                      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i class="fas fa-pencil-alt mr-2"></i>Modifier</button>
                   </div>

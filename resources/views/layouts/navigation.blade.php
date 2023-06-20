@@ -33,7 +33,7 @@
         </a>
       </li>
       <li>
-      
+        <a href="{{ route('users.index') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-indigo-400">
         <i class="fas fa-users mr-2"></i>
           Données utilisateurs
         </a>
