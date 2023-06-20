@@ -1,5 +1,13 @@
 <x-app-layout>
-
+@if ($errors->any())
+    <div class="alert alert-danger text-red-500">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container mx-auto py-6 ">
   <h2 class="text-lg font-semibold text-white text-center">Gestion de produits</h2>
   <div class="flex flex-col mt-6">
@@ -11,6 +19,7 @@
     <tr>
         <th scope="col" class="px-11 py-3 text-center text-xs font-medium text-white uppercase tracking-wider self-center">Image</th>
         <th scope="col" class="px-11 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Nom</th>
+     
         <th scope="col" class="px-11 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Prix</th>
         <th scope="col" class="px-11 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Catégorie</th>
         <th scope="col" class="px-11 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Stock</th>
@@ -29,22 +38,22 @@
             </tbody> -->
             <tbody class="bg-white divide-gray-200 divide-y">
     <tr>
-        <form action="{{ route('products.store') }}" method="POST">
+        <form enctype='multipart/form-data' action="{{ route('products.store') }}" method="POST">
             @csrf
             
             <td>
                 <div class="font-medium text-sm text-gray-900">
-                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 mx-2 rounded-md" name="image" placeholder="Image du produit">
+                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 mx-2 rounded-md"  id="image_input" type="file" name="imageFile" required>
                 </div>
             </td>
             <td>
                 <div class="font-medium text-sm text-gray-900">
-                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 mx-2 rounded-md" name="description" placeholder="Description du produit">
+                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 mx-2 rounded-md" name="label" placeholder="Description du produit">
                 </div>
             </td>
             <td>
                 <div class="font-medium text-sm text-gray-900">
-                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 rounded-md" name="price" placeholder="Prix du produit">
+                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 rounded-md" name="price_unit" placeholder="Prix du produit">
                 </div>
             </td>
             <td>
@@ -60,9 +69,16 @@
             </td>
             <td>
                 <div class="font-medium text-sm text-gray-900">
-                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 rounded-md" name="stock" placeholder="Stock du produit">
+                    <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 rounded-md" name="stock_available" placeholder="Stock du produit">
                 </div>
             </td>
+           
+       
+          
+            
+            
+            
+            
             <td>
                 <div class="font-medium text-sm text-gray-900">
                     <!-- <input class="border-2 border-gray-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 px-2 py-1 rounded-md" name="id" placeholder="ID du produit"> -->
@@ -71,15 +87,15 @@
             <td class="flex justify-center">
                 <button class="px-5 py-2.5 mt-1 text-white bg-blue-500 font-bold hover:bg-blue-700 rounded" type="submit"><i class="mr-2 fas fa-plus-circle"></i>Ajouter</button>
             </td>
+            
         </form>
     </tr>
     @foreach($products as $product)
     <tr class="even:bg-neutral-200">
         <td class="px-6 py-4 whitespace-nowrap">
             <div class="flex items-center">
-                <div class="ml-4">
-                    <div class="text-black font-semibold text-lg">{{ $product->picture_path }}</div>
-                </div>
+                <div class="ml-4 ">
+                <img src="{{ asset(Storage::url($product->picture_path)) }}" alt="image produit" class="w-10">                </div>
             </div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
