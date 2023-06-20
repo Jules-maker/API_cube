@@ -16,11 +16,7 @@ return new class extends Migration
             $table->string('label', 150);
             $table->decimal('price_unit', 8, 2);
             $table->longText('picture_path');
-            $table->string('color', 20);
-            $table->string('brand', 20);
-            $table->string('size', 20);
             $table->integer('stock_available');
-            $table->longText('gender');
             $table->unsignedBigInteger('categories_id')->nullable();
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->timestamps();

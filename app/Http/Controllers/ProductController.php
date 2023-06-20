@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
 
@@ -37,7 +39,20 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        //
+        // dd($request->file('imageFile'));
+        $path = Storage::disk('public')->putFile('Chaussures', $request->file('imageFile'));
+
+        $request->validate([
+            'label' => 'required|string',
+            'price_unit' => 'required|numeric',
+            'stock_available' => 'required|numeric',
+            'categories' => 'array',
+            'imageFile' => 'required|file',
+        ]);
+
+        $request->merge(['picture_path' => $path]);
+        $product = Product::create($request->all());
+        return redirect()->route('products.index')->with('success', 'Le produit a été créé avec succès.');
     }
 
     /**
