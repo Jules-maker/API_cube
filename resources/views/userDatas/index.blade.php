@@ -19,13 +19,13 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
               <!-- Liste des catégories existantes -->
-              @foreach($userDatas as $userData)
+              @foreach($users as $user)
               <tr class="even:bg-neutral-200">
                 <td class="px-6 py-4 whitespace-nowrap ">
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-lg font-semibold text-gray-900">
-                        {{ $userData->name }}
+                        {{ $user->name }}
                       </div>
                     </div>
                   </div>
@@ -34,17 +34,17 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-lg font-semibold text-gray-900">
-                        {{ $userData->email }}
+                        {{ $user->email }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <form method="GET" action="{{ route('userdatas.edit', $userData) }}" class="inline">
+                  <form method="GET" action="{{ route('users.edit', $user) }}" class="inline">
                         @csrf
                         <button type="submit" class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"><i class="fas fa-pencil-alt mr-2"></i>Modifier</button>
                   </form>
-                  <form method="POST" action="{{route('userDatas.destroy', $userData)}}" class="inline">
+                  <form method="POST" action="{{route('users.destroy', $user)}}" class="inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-white bg-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ml-5 transition-all duration-300"><i class="fas fa-trash-alt mr-2"></i>Supprimer</button>

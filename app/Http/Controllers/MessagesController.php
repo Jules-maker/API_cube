@@ -15,6 +15,58 @@ class MessagesController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    /* {
+        keyword: "categorie",
+        argument: "nike"
+    } */
+    public function handleAll(Request $request) {
+        // dd("TEST")
+        $keyword = $request->input("keyword");
+        $argument = $request->input("argument");
+        $response = "";
+
+        switch ($keyword) {
+            case 'catalogue':
+                
+                # code...
+                // dd($keyword);
+                // $categories = Category::all();
+                
+                // $response = "Voici les catégories disponibles : ";
+                // foreach ($categories as $category) {
+                //     $response .= $category->name . ", ";
+                // }
+                $response = "TEST";
+                break;
+            case 'categorie':
+                # code prendre le mot juste apres catégorie Product::where('category_id', $argument)->get();
+                // $products va contenir tous les produits de la catégorie $argument
+                $products = Product::where('categories_id', $argument)->get();
+                $response = "Voici les produits de la catégorie " . $argument . " : ";
+                foreach ($products as $product) {
+                    $response .= $product->label . ", ";
+                }
+                break;
+            case 'consulter':
+                # code
+                break;
+            case 'ajouter':
+                # code prendre le mot juste apres ajouter (le nom du produit)
+                break;
+            case 'commander':
+                # code
+                break;
+            case 'suppression':
+                #code dire supprimer "le produit"
+                break;            
+            default:
+                # code... pr envoyer la réponse pr les mots clés sans fonctions
+                break;
+        }
+
+        return response()->json($response);
+    }
+
     public function handleMessage(Request $request)
     {
     $userMessage = $request->input('message');
@@ -22,6 +74,7 @@ class MessagesController extends BaseController
     if ($userMessage) {
 
         $categories = Category::all();
+        //strpos — Trouve la position de la première occurrence d'une sous-chaîne dans une chaîne
         if (strpos($userMessage, 'catalogue') !==false) {
             $response = "Voici les catégories disponibles : ";
             foreach ($categories as $category) {
